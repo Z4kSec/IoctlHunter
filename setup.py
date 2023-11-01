@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 setup(
     name="IoctlHunter",
     version="0.1",
-    description="XXX",
+    description="CLI tools allowing to ease the dynamic analysis of IOCTL calls in destination to Windows drivers for RedTeam/pentest perspectives",
     long_description=README,
     long_description_content_type="text/markdown",
     license="MIT",
