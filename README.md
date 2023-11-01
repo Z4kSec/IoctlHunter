@@ -90,6 +90,3 @@ Results:
 
 /!\ IoctlHunter provides dynamic key binding, please press [h] while running to get more information /!\
 ```
-=======
-# IoctlHunter
->>>>>>> 0f40c5b0d238fcba9d70e4d50a3f75f462748b9a
