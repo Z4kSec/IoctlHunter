@@ -6,7 +6,7 @@ from .display import print_final_recap
 from ..utils.logger import load_custom_logger
 
 
-VERSION = "0.1"
+VERSION = "0.2"
 logger = logging.getLogger("ioctl-hunter")
 
 

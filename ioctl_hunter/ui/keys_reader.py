@@ -3,7 +3,7 @@ import threading
 import time
 import logging
 import msvcrt
-from colorama import Fore, Style
+from colorama import init, Fore, Style
 from ..lib.state import State
 from ..ui.display import (
     print_enable_debugger,
@@ -19,6 +19,7 @@ class KeysListenner(threading.Thread):
 
     def __init__(self):
         super(KeysListenner, self).__init__(daemon=True)
+        init(convert=True)
         self.start()
 
     def run(self):
