@@ -20,6 +20,7 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+example.exe
 
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
