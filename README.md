@@ -2,33 +2,13 @@
 
 IoctlHunter is a command-line tool designed to simplify the analysis of IOCTL calls made by userland software targeting Windows drivers.
 
-**TL;DR: Here are the [videos demonstrating the usage of IoctlHunter](#demo)**
+**TL;DR: Here are the [videos demonstrating the usage of IoctlHunter](https://z4ksec.github.io/posts/ioctlhunter-release-v0.2/#demo-with-powertools)**
 
 From a cybersecurity perspective, IoctlHunter empowers security researchers to identify IOCTL calls that could potentially be reused in standalone binaries to perform various actions, such as privilege escalation (EoP) or killing Endpoint Detection and Response (EDR) processes.
 
 This technique, also known as BYOVD (Bring Your Own Vulnerable Driver), involves embedding a signed vulnerable driver within a binary. Once deployed on a targeted system, the binary loads the driver and sends IOCTL calls to it to execute specific offensive actions with kernel-level privileges.
 
 A [blog post](https://z4ksec.github.io/posts/ioctlhunter-release-v0.2/) was published to detail the implemented technics and how IoctlHunter works.
-
-### Demo 
-
-In Alice's blog post, titled "[Finding and Exploiting Process Killer Drivers with LOL for $3000](https://alice.climent-pommeret.red/posts/process-killer-driver/)," she demonstrated how a static reverse engineering analysis of the `kEvP64.sys` driver used by the `PowerTool` software allowed her to develop a [process killer tool](https://github.com/xalicex/Killers) that could terminate protected processes with kernel-level privileges.
-
-The following video demonstrates how IoctlHunter makes it easy to identify all the elements needed to terminate protected processes using the same tool:
-
-<video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
-       <source src="https://z4ksec.github.io/assets/video/demo_ioctlhunter_powertool.mp4" type="video/mp4" />
-</video>
-<center><u><i>Hunting for IOCTLs on PowerTool</i></u></center>
-<br/>
-
-Subsequently, using the information obtained, (a Golang package)[https://github.com/Z4kSec/IoctlHunter/tree/main/example] provided in the IoctlHunter repository allows you to load and replay the IOCTL calls:
-
-<video  style="display:block; width:100%; height:auto;" autoplay controls loop="loop">
-       <source src="https://z4ksec.github.io/assets/video/demo_ioctlhunter_golang_ex_killer.mp4" type="video/mp4" />
-</video>
-<center><u><i>Killing protected processes thanks to PowerTool driver</i></u></center>
-<br/>
 
 ### Installation
 
