@@ -85,6 +85,20 @@ Results:
 /!\ IoctlHunter provides dynamic key binding, please press [h] while running to get more information /!\
 ```
 
+Furthermore, the dynamic key bindings are the following:
+
+```
+-------------------- IoctlHunter helper --------------------
+
+> Press [SPACE] to enable or disable the hooking engine
+> Press [ENTER] to get all information related to the current Ioctl hunt
+> Press [a/A] to append elements to an inclusion / exclusion list
+> Press [r/R] to remove elements to an inclusion / exclusion list
+> Press [h/H] to display this message
+> Press [CTRL] + [c/C] to gracefully exit IoctlHunter
+
+-----------------------------------------------------------
+```
 
 
 
