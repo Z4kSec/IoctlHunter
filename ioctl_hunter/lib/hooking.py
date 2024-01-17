@@ -23,33 +23,25 @@ def check_drivers_filters(ioctl_dict):
                 ioctl_dict["handle_path"] != "N/A"
                 and driver.lower() in ioctl_dict["handle_path"].lower()
             ):
-                return False
+                return True
+        return False
 
-    ret = False
-    if State.results.excluded_drivers:
+    elif State.results.excluded_drivers:
         for driver in State.results.excluded_drivers:
             if (
                 ioctl_dict["handle_path"] != "N/A"
                 and driver.lower() in ioctl_dict["handle_path"].lower()
             ):
-                ret = True
-                break
+                return False
 
-    return ret
+    return True
 
 
 def check_ioctls_filters(ioctl_dict):
-    if (
-        State.results.included_ioctls
-        and ioctl_dict["ioctl"] in State.results.included_ioctls
-    ):
-        return False
-    if (
-        State.results.excluded_ioctls
-        and ioctl_dict["ioctl"] in State.results.excluded_ioctls
-    ):
-        return True
-    return False
+    if State.results.included_ioctls:
+        return ioctl_dict["ioctl"] in State.results.included_ioctls
+    elif State.results.excluded_ioctls:
+        return ioctl_dict["ioctl"] not in State.results.excluded_ioctls
 
 
 def process_device_ioctl_queue():
@@ -86,10 +78,10 @@ def process_device_ioctl_queue():
             logger.error(open_handles)
             ioctl_dict["handle_path"] = "N/A"
 
-        if check_drivers_filters(ioctl_dict):
+        if not check_drivers_filters(ioctl_dict):
             continue
 
-        if check_ioctls_filters(ioctl_dict):
+        if not check_ioctls_filters(ioctl_dict):
             continue
 
         device, access, function, method = get_ioctl_code_details(ioctl_dict["ioctl"])
@@ -160,7 +152,7 @@ def start_hooking(exe_path=None, pid=None, args=None, x32=False, all_symbols=Fal
         State.script.exports.setHookEnabled(State.hook_enabled)
 
     for ioctl in State.results.excluded_ioctls:
-        State.script.exports.exclude_ioctl(ioctl)
+        State.script.exports.excludeioctl(ioctl)
 
     logger.info("Start hunting juicy IOCTLs")
     while State.running and psutil.pid_exists(pid):
