@@ -60,8 +60,8 @@ var open_handles = {}
 //
 
 rpc.exports = {
-    exclude_ioctl: function (ioctl) {
-        excluded_ioctl.push(+ioctl);
+    excludeioctl: function (ioctl) {
+        excluded_ioctl.push(ioctl);
         return excluded_ioctl;
     },
     sethookenabled: function (bool) {
@@ -98,13 +98,13 @@ function getPathByHandle(handle) {
     var ret = Func_NtQueryObject(handle, 1, ptr, 1024, ptr2)
 
     if (x32) {
-        var path = Memory.readUtf16String(ptr.add(8))   // 32 bits binaries
+        var path = Memory.readUtf16String(Memory.readPointer(ptr.add(8)))   // 32 bits binaries
     }
     else {
-        var path = Memory.readUtf16String(ptr.add(16))  // 64 bits binaries
+        var path = Memory.readUtf16String(Memory.readPointer(ptr.add(16)))  // 64 bits binaries
     }
 
-    return path
+    return path.replaceAll("\\", "\\\\")
 }
 
 //
