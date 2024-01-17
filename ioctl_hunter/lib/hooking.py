@@ -42,6 +42,8 @@ def check_ioctls_filters(ioctl_dict):
         return ioctl_dict["ioctl"] in State.results.included_ioctls
     elif State.results.excluded_ioctls:
         return ioctl_dict["ioctl"] not in State.results.excluded_ioctls
+    else:
+        return True
 
 
 def process_device_ioctl_queue():
